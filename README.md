@@ -21,4 +21,7 @@ The first version used Vuesax component framework -> **now ditched** due to it b
 Switched to Quasar framework, because I simply don't have the time to do the project with
 components from scratch and custom CSS
 
+## How to run
+
+If you're running locally, navigate to client folder and run ``` npm start ``` this will run the backend and the client using concurrently.
 
