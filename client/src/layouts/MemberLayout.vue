@@ -12,11 +12,11 @@
       </q-toolbar>
 
       <q-tabs align="center">
-        <q-route-tab to="/overview" label="Pregled" />
-        <q-route-tab to="/diary" label="Dnevnik" />
-        <q-route-tab to="/goals" label="Ciljevi" />
-        <q-route-tab to="/mood" label="Raspoloženje" />
-        <q-route-tab to="/profile" label="Profil" />
+        <q-route-tab to="overview" label="Pregled" />
+        <q-route-tab to="diary" label="Dnevnik" />
+        <q-route-tab to="goals" label="Ciljevi" />
+        <q-route-tab to="mood" label="Raspoloženje" />
+        <q-route-tab to="profile" label="Profil" />
       </q-tabs>
     </q-header>
     <q-page-container>

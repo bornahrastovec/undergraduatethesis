@@ -11,11 +11,11 @@ const routes = [
     path: '/member-area',
     component: () => import('layouts/MemberLayout.vue'),
     children: [
-      {path: '/overview', component: () => import('pages/member-area/Index.vue')},
-      {path: '/diary', component: () => import('pages/member-area/Diary.vue')},
-      {path: '/goals', component: () => import('pages/member-area/Goals.vue')},
-      {path: '/mood', component: () => import('pages/member-area/Mood.vue')},
-      {path: '/profile', component: () => import('pages/member-area/Profile.vue')},
+      {path: 'overview', component: () => import('pages/member-area/Index.vue')},
+      {path: 'diary', component: () => import('pages/member-area/Diary.vue')},
+      {path: 'goals', component: () => import('pages/member-area/Goals.vue')},
+      {path: 'mood', component: () => import('pages/member-area/Mood.vue')},
+      {path: 'profile', component: () => import('pages/member-area/Profile.vue')},
     ]
   },
   {

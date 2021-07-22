@@ -1,21 +1,15 @@
 <template>
-  <q-layout>
-    <q-page-container>
-      <q-page
-        class="window-height window-width row justify-center items-center"
-      >
-        <div class="avatar">
-          <q-avatar size="10vh" color="teal" text-color="white" icon="directions" />
-        </div>
-        <div class="info" style="display: block; text-align: center">
-          <h1>{{ name + " " + surname }}</h1>
-          <h2>{{ username }}</h2>
-          <h3>{{ email }}</h3>
-          <h4>{{ date }}</h4>
-        </div>
-      </q-page>
-    </q-page-container>
-  </q-layout>
+  <q-page class="window-height window-width row justify-center items-center">
+    <div class="avatar">
+      <q-avatar size="10vh" color="teal" text-color="white" icon="directions" />
+    </div>
+    <div class="info" style="display: block; text-align: center">
+      <h1>{{ name + " " + surname }}</h1>
+      <h2>{{ username }}</h2>
+      <h3>{{ email }}</h3>
+      <h4>{{ date }}</h4>
+    </div>
+  </q-page>
 </template>
 
 <script>
