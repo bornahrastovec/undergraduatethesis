@@ -7,6 +7,8 @@ const passport = require('passport');
 
 const users = require('./routes/api/users');
 const diary = require('./routes/api/diary');
+const goal = require('./routes/api/goal');
+const mood = require('./routes/api/mood');
 
 const PORT = process.env.PORT || 5000; 
 
@@ -29,6 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/users', users);
 app.use('/api/diary', diary);
+app.use('/api/goals', goal);
+app.use('/api/mood', mood);
+
 
 app.use(passport.initialize());
 
@@ -36,7 +41,7 @@ require('./config/passport')(passport);
 
 const db = require('./config/keys').mongoURI;
 
-mongoose.connect(db, { useNewUrlParser: true }).then(() => {
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log(`Connected to ${db}!`);
 }).catch(err => console.log(err));
 

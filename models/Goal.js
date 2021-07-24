@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const GoalSchema = new Schema({
+
     userId: {
         type: String,
         required: true
@@ -22,6 +23,7 @@ const GoalSchema = new Schema({
         type: String,
         required: true
     },
+    
 });
 
-module.exports = Goal = mongoose.model('mood', GoalSchema);
+module.exports = Goal = mongoose.model('goal', GoalSchema);

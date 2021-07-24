@@ -13,6 +13,10 @@ const MoodSchema = new Schema({
     mood: {
         type: String,
         required: true
+    },
+    description: {
+        type: String,
+        required: true
     }
 })
 
