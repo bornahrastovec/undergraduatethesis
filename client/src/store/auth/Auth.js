@@ -41,7 +41,6 @@ const actions = {
         await localStorage.removeItem('token');
         commit('logout');
         delete axios.defaults.headers.common['Authorization'];
-        router.apply.
         return
     },
 

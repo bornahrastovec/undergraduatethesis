@@ -4,7 +4,8 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index.vue') },
+      // { path: '', component: () => import('pages/Random.vue')}
     ]
   },
   {
@@ -16,15 +17,24 @@ const routes = [
       {path: 'goals', component: () => import('pages/member-area/Goals.vue')},
       {path: 'mood', component: () => import('pages/member-area/Mood.vue')},
       {path: 'profile', component: () => import('pages/member-area/Profile.vue')},
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    },
   },
   {
     path: '/login',
-    component: () => import('pages/Login.vue')
+    component: () => import('pages/Login.vue'),
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/register',
-    component: () => import('pages/Register.vue')
+    component: () => import('pages/Register.vue'),
+    meta: {
+      requiresGuest: true
+    }
   },
 
 

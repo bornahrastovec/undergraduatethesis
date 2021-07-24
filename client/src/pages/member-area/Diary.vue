@@ -2,7 +2,7 @@
   <q-page>
     <div class="q-pa-md">
       <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
-        <div v-for="entry in diaryEntries" :key="entry" class="col-lg-3 col-sm-12 self-center">
+        <div v-for="entry in diaryEntries" :key="entry" class="col-lg-3 col-xs-12 col-md-12 col-sm-12 self-center">
           <q-card
             dark
             bordered
