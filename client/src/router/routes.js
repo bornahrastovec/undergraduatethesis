@@ -5,7 +5,9 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
-      // { path: '', component: () => import('pages/Random.vue')}
+      { path: 'blog', component: () => import('pages/main-layout/Blog.vue')},
+      { path: 'blog/:id', component: () => import('pages/main-layout/Article.vue')},
+      { path: 'resources', component: () => import('pages/main-layout/Resources.vue')}
     ]
   },
   {

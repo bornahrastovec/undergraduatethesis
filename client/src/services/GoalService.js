@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:5000/api/diary";
+const url = "http://localhost:5000/api/goals";
 
 
 class GoalService {
@@ -12,7 +12,7 @@ class GoalService {
      */
     static async GetGoals(userId) {
         try {
-            const res = await axios.post(url+'/goals', { userId: `${id}`});
+            const res = await axios.post(url+'/allgoals', { userId: `${id}`});
             console.log(res.data.entries);
             return res.data.entries;
         } catch (err) {
@@ -38,3 +38,5 @@ class GoalService {
     }
 
 }
+
+export default GoalService

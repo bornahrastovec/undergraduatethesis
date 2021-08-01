@@ -1,17 +1,22 @@
 <template>
   <q-page class="bg-info row justify-center items-center">
-    <span style="font-size: 2rem; color: white" v-if="isEnteredForToday !== true">Kako si danas?</span>
-    <div style="display: block;" v-if="entryClicked !== true">
+    <span
+      style="font-size: 2rem; color: white"
+      v-if="isEnteredForToday !== true"
+      >Kako si danas?</span
+    >
+    <div style="display: block" v-if="entryClicked !== true">
       <div v-if="isEnteredForToday == true">
-        <h3 style="color: white;">Danas je već uneseno raspoloženje 
-          <span v-if="latestMood === 'Super'">🎉</span>
+        <h3 style="color: white">
+          Danas je već uneseno raspoloženje
+          <span v-if="latestMood === 'Super'">🥳</span>
           <span v-if="latestMood === 'Vrlo dobro'">😃</span>
           <span v-if="latestMood === 'Dobro'">😐</span>
           <span v-if="latestMood === 'Loše'">😔</span>
           <span v-if="latestMood === 'Jako loše'">😫</span>
         </h3>
       </div>
-      <div class="row q-pa-md" v-if="isEnteredForToday == false">
+      <div class="row q-pa-md" v-if="isEnteredForToday === false">
         <q-select
           bg-color="teal"
           label-color="white"
@@ -63,9 +68,9 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex';
-import MoodService from '../../services/MoodService';
-import moment from 'moment';
+import { mapGetters, mapActions } from "vuex";
+import MoodService from "../../services/MoodService";
+import moment from "moment";
 
 export default {
   computed: {
@@ -85,32 +90,34 @@ export default {
       this.entryClicked = true;
     },
     saveEntry() {
-      MoodService.NewMood(this.user._id, this.model, this.description).then((res) => {
-        this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          message: "Usprešno spremljeno raspoloženje (za danas 😉)",
-        });
-        MoodService.GetAllMoods(this.user._id).then((res) => {
-          console.log(res);
-        })
+      MoodService.NewMood(this.user._id, this.model, this.description).then(
+        (res) => {
+          this.$q.notify({
+            color: "green-4",
+            textColor: "white",
+            icon: "cloud_done",
+            message: "Usprešno spremljeno raspoloženje (za danas 😉)",
+          });
+          this.checkIfAlreadyEntered();
+        }
+      );
+    },
+    checkIfAlreadyEntered() {
+      MoodService.GetAllMoods(this.user._id).then((res) => {
+        const lastDate = res[res.length - 1].date;
+        const latestMood = res[res.length - 1].mood;
+
+        if (moment().diff(moment(lastDate), "hours") < 24) {
+          this.isEnteredForToday = true;
+          this.latestMood = latestMood;
+        }
       });
     },
   },
   async created() {
     await this.getProfile();
-    MoodService.GetAllMoods(this.user._id).then((res) => {
-
-      const lastDate = res[res.length-1].date;
-      const latestMood = res[res.length-1].mood;
-
-      if (moment().diff(moment(lastDate), 'hours') < 24) {
-        this.isEnteredForToday = true;
-        this.latestMood = latestMood;
-      }
-    })
-  }
+    this.checkIfAlreadyEntered();
+  },
 };
 </script>
 
