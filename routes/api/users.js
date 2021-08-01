@@ -13,9 +13,9 @@ const User = require('../../models/User');
  */
 
 router.post('/register', (req, res) => {
-    let {name, surname, username, password, confirmPassword, email, date } = req.body
+    let {name, surname, username, password, passwordRepeat, email, date } = req.body
 
-    if(password !== confirmPassword) {
+    if(password !== passwordRepeat) {
         return res.status(400).json({
             msg: "Lozinke se ne podudaraju"
         });

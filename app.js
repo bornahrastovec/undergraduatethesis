@@ -34,6 +34,7 @@ app.use('/api/diary', diary);
 app.use('/api/goals', goal);
 app.use('/api/mood', mood);
 
+require("./scheduler");
 
 app.use(passport.initialize());
 
