@@ -11,4 +11,4 @@ npm install
 ```bash
 npm start
 ```
-![alt text](https://banner2.cleanpng.com/20180618/yqz/kisspng-sigmund-freud-the-psychopathology-of-everyday-life-5b27e75b7b8f39.5117867415293417875061.jpg)
+![alt text](https://www.vhv.rs/dpng/d/312-3121044_sigmund-freud-coloring-page-line-art-hd-png.png)
