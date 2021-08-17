@@ -25,4 +25,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+  .aligncenter {
+    text-align: center;
+  }
+  img {
+    text-align: center;
+    width: 300px;
+    height: 300px;
+  }
 </style>

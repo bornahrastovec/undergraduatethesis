@@ -5,7 +5,7 @@
         <q-form @submit="onOKClick" class="q-gutter-md">
           <q-input
             filled
-            v-model="title"
+            v-model="newTitle"
             label="Naslov *"
             lazy-rules
             :rules="[
@@ -16,7 +16,7 @@
           <q-input
             filled
             type="textarea"
-            v-model="description"
+            v-model="newDescription"
             label="Opis *"
             lazy-rules
             :rules="[
@@ -28,7 +28,7 @@
           />
           <q-rating
             label="Ocjena raspoloženja"
-            v-model="rating"
+            v-model="newRating"
             :max="4"
             size="2.5em"
             color="green-5"
@@ -38,7 +38,7 @@
       </div>
       <q-card-actions align="right">
         <q-btn label="Zatvori" flat @click="onCancelClick" />
-        <q-btn color="primary" label="Spremi" type="submit" @click="onOKClick" />
+        <q-btn color="primary" label="Spremi" type="submit" @click="onOKClick"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -47,7 +47,10 @@
 <script>
 export default {
   props: {
-    // ...your custom props
+    id: String,
+    title: String,
+    rating: Number,
+    description: String,
   },
 
   emits: [
@@ -62,9 +65,9 @@ export default {
       "sentiment_satisfied",
       "sentiment_very_satisfied",
     ],
-    rating: 0,
-    title: "",
-    description: "",
+    newRating: 0,
+    newTitle: "",
+    newDescription: "",
   }),
 
   methods: {
@@ -72,11 +75,20 @@ export default {
     // (don't change its name --> "show")
     show() {
       this.$refs.dialog.show();
+
+      if (this.$props.id != "") {
+        this.newRating = this.$props.rating;
+        this.newDescription = this.$props.description;
+        this.newTitle = this.$props.title;
+      }
     },
 
     // following method is REQUIRED
     // (don't change its name --> "hide")
     hide() {
+      this.newRating = 0;
+      this.newDescription = "";
+      this.newTitle = "";
       this.$refs.dialog.hide();
     },
 
@@ -88,14 +100,15 @@ export default {
 
     onOKClick() {
       if (
-        this.title.length > 0 &&
-        this.description.length > 0 &&
-        this.rating > 0
+        this.newTitle.length > 0 &&
+        this.newDescription.length > 0 &&
+        this.newRating > 0
       ) {
         this.$emit("ok", {
-          title: this.title,
-          description: this.description,
-          rating: this.rating,
+          id: this.$props.id,
+          title: this.newTitle,
+          description: this.newDescription,
+          rating: this.newRating,
         });
 
         this.hide();
@@ -107,12 +120,12 @@ export default {
           message: "Usprešno spremljen unos u dnevnik",
         });
       } else {
-          this.$q.notify({
-              color: 'red-5',
-              textColor: "white",
-              icon: "warning",
-              message: "Molimo ispunite sva polja"
-          })
+        this.$q.notify({
+          color: "red-5",
+          textColor: "white",
+          icon: "warning",
+          message: "Molimo ispunite sva polja",
+        });
       }
     },
 

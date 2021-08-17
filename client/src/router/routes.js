@@ -7,13 +7,13 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
       { path: 'blog', component: () => import('pages/main-layout/Blog.vue')},
       { path: 'blog/:id', component: () => import('pages/main-layout/Article.vue')},
-      { path: 'resources', component: () => import('pages/main-layout/Resources.vue')}
     ]
   },
   {
     path: '/member-area',
     component: () => import('layouts/MemberLayout.vue'),
     children: [
+      {path: '', component: () => import('pages/member-area/Index.vue')},
       {path: 'overview', component: () => import('pages/member-area/Index.vue')},
       {path: 'diary', component: () => import('pages/member-area/Diary.vue')},
       {path: 'goals', component: () => import('pages/member-area/Goals.vue')},
@@ -21,8 +21,19 @@ const routes = [
       {path: 'profile', component: () => import('pages/member-area/Profile.vue')},
     ],
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      allowAdmin: false,
     },
+  },
+  {
+    path: '/admin',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      {path: '', component: () => import('pages/admin/Index.vue')},
+    ],
+    meta: {
+      requiresAdmin: true
+    }
   },
   {
     path: '/login',
@@ -45,7 +56,12 @@ const routes = [
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue')
+  },
+  {
+    path: '/unauthorized',
+    component: () => import('pages/Error404.vue')
   }
+
 ]
 
 export default routes

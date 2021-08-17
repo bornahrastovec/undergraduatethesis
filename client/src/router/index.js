@@ -38,11 +38,18 @@ export default route(function ({ store/*, ssrContext */ }) {
       }
     } else if (to.matched.some(record => record.meta.requiresGuest)) {
       if (store.getters['Auth/isLoggedIn']) {
-        next('/member-area/');
+        next('/member-area');
       } else {
         next();
       }
-    } else {
+    // } else if (to.matched.some(record => record.meta.requiresAdmin)) {
+    //   if (store.getters['Auth/isAdmin']) {
+    //     next();
+    //   } else {
+    //     next('/unauthorized')
+    //   }
+    }
+    else {
       next();
     }
   })

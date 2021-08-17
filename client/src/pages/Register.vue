@@ -1,139 +1,145 @@
 <template>
   <q-layout>
     <q-page-container>
-      <q-page
-        class="window-height window-width row justify-center items-center"
-      >
-        <div
-          class="
-            col-lg-6
-            bg-teal
-            window-height
-            justify-center
-            items-center
-            left-pane
-          "
-        >
-          <h1>Registracija</h1>
-        </div>
-        <div class="col-lg-6 text-center">
-          <div class="form-container flex justify-center">
-            <q-card bordered class="bg-white my-card">
-              <q-card-section>
-                <q-form class="q-gutter-md">
-                  <q-input
-                    rounded
-                    flled
-                    v-model="username"
-                    label="Korisničko ime"
-                    lazy-rules
-                    :rules="[
-                      (val) =>
-                        (val && val.length > 0) || 'Molimo unesite nešto',
-                    ]"
-                  />
-                  <q-input
-                    type="email"
-                    rounded
-                    flled
-                    v-model="email"
-                    label="Email"
-                    lazy-rules
-                    :rules="[
-                      (val) =>
-                        (val && val.length > 0) || 'Molimo unesite nešto',
-                    ]"
-                  />
-                  <q-input
-                    type="text"
-                    rounded
-                    flled
-                    v-model="name"
-                    label="Ime"
-                    lazy-rules
-                    :rules="[
-                      (val) =>
-                        (val && val.length > 0) || 'Molimo unesite nešto',
-                    ]"
-                  />
-                  <q-input
-                    type="text"
-                    rounded
-                    flled
-                    v-model="surname"
-                    label="Prezime"
-                    lazy-rules
-                    :rules="[
-                      (val) =>
-                        (val && val.length > 0) || 'Molimo unesite nešto',
-                    ]"
-                  />
-
-                  <q-input
-                    v-model="password"
-                    rounded
-                    filled
-                    lazy-rules
-                    label="Lozinka"
-                    :rules="[
-                      (val) =>
-                        (val && val.length > 0) || 'Molimo unesite lozinku',
-                      (val) =>
-                        (val && val.length >= 8) ||
-                        'Lozinka mora biti najmanje 8 znakova duga',
-                    ]"
-                    :type="isPwd ? 'password' : 'text'"
-                  >
-                    <template v-slot:append>
-                      <q-icon
-                        :name="isPwd ? 'visibility_off' : 'visibility'"
-                        class="cursor-pointer"
-                        @click="isPwd = !isPwd"
-                      />
-                    </template>
-                  </q-input>
-                  <q-input
-                    v-model="passwordRepeat"
-                    rounded
-                    filled
-                    lazy-rules
-                    label="Ponovite lozinku"
-                    :rules="[
-                      (val) =>
-                        (val && val.length > 0) || 'Molimo unesite lozinku',
-                      (val) =>
-                        (val && val.length >= 8) ||
-                        'Lozinka mora biti najmanje 8 znakova duga',
-                    ]"
-                    :type="isPwd ? 'password' : 'text'"
-                  >
-                    <template v-slot:append>
-                      <q-icon
-                        :name="isPwd ? 'visibility_off' : 'visibility'"
-                        class="cursor-pointer"
-                        @click="isPwd = !isPwd"
-                      />
-                    </template>
-                  </q-input>
-
-                  <div>
-                    <q-btn
-                      label="Registracija"
-                      type="submit"
-                      color="primary"
-                      @click.prevent="registerUser"
+      <q-page>
+        <div class="row">
+          <div
+            class="
+              col-lg-6 col-sm-12 col-xs-12
+              flex
+              bg-teal
+              window-height
+              justify-center
+              align-center
+              left-pane
+            "
+          >
+            <div class="text-h1 text-white text-bold">Registracija</div>
+          </div>
+          <div
+            class="
+              col-lg-6 col-sm-12 col-xs-12
+              flex
+              justify-center
+              align-center
+            "
+          >
+            <div class="row q-pa-md full-width">
+              <q-card bordered class="bg-white my-card">
+                <q-card-section>
+                  <q-form class="q-gutter-md" @submit.stop="onSubmit">
+                    <q-input
+                      rounded
+                      flled
+                      v-model="username"
+                      label="Korisničko ime"
+                      lazy-rules
+                      :rules="[
+                        (val) =>
+                          (val && val.length > 0) || 'Molimo unesite nešto',
+                      ]"
                     />
-                    <q-btn
-                      label="Prijava"
-                      color="primary"
-                      flat
-                      class="q-ml-sm"
-                      to="/login"
+                    <q-input
+                      type="email"
+                      rounded
+                      flled
+                      v-model="email"
+                      label="Email"
+                      lazy-rules
+                      :rules="[
+                        (val) =>
+                          (val && val.length > 0) || 'Molimo unesite nešto',
+                      ]"
                     />
-                  </div>
-                </q-form>
-              </q-card-section>
-            </q-card>
+                    <q-input
+                      type="text"
+                      rounded
+                      flled
+                      v-model="name"
+                      label="Ime"
+                      lazy-rules
+                      :rules="[
+                        (val) =>
+                          (val && val.length > 0) || 'Molimo unesite nešto',
+                      ]"
+                    />
+                    <q-input
+                      type="text"
+                      rounded
+                      flled
+                      v-model="surname"
+                      label="Prezime"
+                      lazy-rules
+                      :rules="[
+                        (val) =>
+                          (val && val.length > 0) || 'Molimo unesite nešto',
+                      ]"
+                    />
+                    <q-select
+                      outlined
+                      v-model="gender"
+                      :options="options"
+                      label="Spol"
+                    />
+
+                    <q-input
+                      v-model="password"
+                      rounded
+                      filled
+                      lazy-rules
+                      label="Lozinka"
+                      :rules="[
+                        (val) =>
+                          (val && val.length > 0) || 'Molimo unesite lozinku',
+                        (val) =>
+                          (val && val.length >= 8) ||
+                          'Lozinka mora biti najmanje 8 znakova duga',
+                      ]"
+                      :type="isPwd ? 'password' : 'text'"
+                    >
+                      <template v-slot:append>
+                        <q-icon
+                          :name="isPwd ? 'visibility_off' : 'visibility'"
+                          class="cursor-pointer"
+                          @click="isPwd = !isPwd"
+                        />
+                      </template>
+                    </q-input>
+                    <q-input
+                      v-model="passwordRepeat"
+                      rounded
+                      filled
+                      lazy-rules
+                      label="Ponovite lozinku"
+                      :rules="[
+                        (val) =>
+                          (val && val.length > 0) || 'Molimo unesite lozinku',
+                        (val) =>
+                          (val && val.length >= 8) ||
+                          'Lozinka mora biti najmanje 8 znakova duga',
+                      ]"
+                      :type="isPwd ? 'password' : 'text'"
+                    >
+                      <template v-slot:append>
+                        <q-icon
+                          :name="isPwd ? 'visibility_off' : 'visibility'"
+                          class="cursor-pointer"
+                          @click="isPwd = !isPwd"
+                        />
+                      </template>
+                    </q-input>
+                    <div>
+                      <q-btn
+                        label="Registracija"
+                        color="primary"
+                        type="submit"
+                      />
+                      <q-btn label="Prijava" flat class="q-ml-sm" to="/login" />
+                    </div>
+                  </q-form>
+                </q-card-section>
+              </q-card>
+            </div>
           </div>
         </div>
       </q-page>
@@ -149,6 +155,8 @@ export default {
     ...mapGetters("Auth", ["isLoggedIn"]),
   },
   data: () => ({
+    gender: "",
+    options: ["Muško", "Žensko"],
     username: "",
     password: "",
     name: "",
@@ -160,20 +168,8 @@ export default {
   methods: {
     ...mapActions("Auth", ["login"]),
     ...mapActions("Auth", ["register"]),
-    registerUser() {
-      if (
-        (this.username == "" || this.password == "" || this.name == "",
-        this.surname == "",
-        (this.name = ""),
-        (this.passwordRepeat = ""),
-        (this.email = ""))
-      ) {
-        this.$q.notify({
-          type: "negative",
-          message: "Molimo ispunite sva polja",
-        });
-      }
-
+    onSubmit() {
+      debugger;
       if (this.password === this.passwordRepeat) {
         let user = {
           username: this.username,
@@ -181,7 +177,8 @@ export default {
           name: this.name,
           surname: this.surname,
           email: this.email,
-          passwordRepeat: this.passwordRepeat
+          gender: this.gender,
+          passwordRepeat: this.passwordRepeat,
         };
         this.$q.loading.show();
         this.register(user)

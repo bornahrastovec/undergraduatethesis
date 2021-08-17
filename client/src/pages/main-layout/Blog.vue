@@ -1,7 +1,11 @@
 <template>
   <q-page class="blog">
     <div class="q-pa-md">
-      <h3>Izvor: http://mentalnozdravlje.com.hr/</h3>
+      <div class="row">
+        <div class="text-h4 text-center q-pa-md">
+          Izvor: http://mentalno-zdravlje.hr
+        </div>
+      </div>
       <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
         <div
           v-for="article in articles"
@@ -17,7 +21,9 @@
             </q-card-section>
             <q-separator dark />
             <q-card-actions>
-              <q-btn color="primary" :to="'/blog/'+article.id">Cijeli članak</q-btn>
+              <q-btn color="primary" :to="'/blog/' + article.id"
+                >Cijeli članak</q-btn
+              >
             </q-card-actions>
           </q-card>
         </div>
@@ -38,8 +44,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-    .q-card {
-        max-width: 100% !important;
-    }
-
+.q-card {
+  max-width: 100% !important;
+}
 </style>

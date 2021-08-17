@@ -10,7 +10,7 @@
     </div>
     <div class="column q-pa-md bg-teal" style="color:white;" id="desc">
       <div class="title">
-        <h1 style="text-align: center;">Što je "Freud"?</h1>
+        <div class="text-h2 text-center q-pa-md">Što je "Freud"?</div>
       </div>
       <div class="text-area" style="text-align: center;">
         <p>

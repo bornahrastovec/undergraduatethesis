@@ -1,45 +1,50 @@
 <template>
-  <q-page class="bg-info row justify-center items-center">
-    <span
-      style="font-size: 2rem; color: white"
-      v-if="isEnteredForToday !== true"
-      >Kako si danas?</span
-    >
+  <q-page class="full-height justify-center items-center fit">
     <div style="display: block" v-if="entryClicked !== true">
       <div v-if="isEnteredForToday == true">
-        <h3 style="color: white">
+        <h3 style="color: black; text-align: center;">
           Danas je već uneseno raspoloženje
-          <span v-if="latestMood === 'Super'">🥳</span>
-          <span v-if="latestMood === 'Vrlo dobro'">😃</span>
-          <span v-if="latestMood === 'Dobro'">😐</span>
-          <span v-if="latestMood === 'Loše'">😔</span>
-          <span v-if="latestMood === 'Jako loše'">😫</span>
+          <span v-if="latestMood === 5">🥳</span>
+          <span v-if="latestMood === 4">😃</span>
+          <span v-if="latestMood === 3">😐</span>
+          <span v-if="latestMood === 2">😔</span>
+          <span v-if="latestMood === 1">😫</span>
         </h3>
       </div>
-      <div class="row q-pa-md" v-if="isEnteredForToday === false">
-        <q-select
-          bg-color="teal"
-          label-color="white"
-          filled
-          v-model="model"
-          :options="options"
-          label="Osjećaj"
-        />
-        <q-btn
-          round
-          color="primary"
-          icon="send"
-          size="20px"
-          v-if="model != null"
-          style="margin-left: 20px"
-          @click="entryClicked = true"
-        />
+    </div>
+    <div
+      class="q-pa-md"
+      v-if="isEnteredForToday === false && entryClicked !== true"
+    >
+      <h1 style="text-align: center">Kako si danas?</h1>
+      <div class="row justify-center align-center">
+        <div class="col flex justify-end">
+          <q-select
+            bg-color="teal"
+            style="width: 200px"
+            label-color="white"
+            filled
+            v-model="model"
+            :options="options"
+            label="Osjećaj"
+          />
+        </div>
+        <div class="col flex justify-start">
+          <q-btn
+            round
+            color="primary"
+            icon="send"
+            size="20px"
+            v-if="model != null"
+            style="margin-left: 20px"
+            @click="entryClicked = true"
+          />
+        </div>
       </div>
-      <div class="q-pa-md q-gutter-md"></div>
     </div>
     <div style="display: block" v-if="entryClicked === true">
       <span style="font-size: 2rem; color: white"
-        >Odabrao/la si da si "{{ model }}", zašto?</span
+        >Odabrao/la si da si "{{ model.label }}", zašto?</span
       >
       <q-input
         filled
@@ -78,10 +83,31 @@ export default {
   },
   data: () => ({
     model: "Dobro",
-    options: ["Jako loše", "Loše", "Dobro", "Vrlo dobro", "Super"],
+    options: [
+      {
+        label: "Jako loše",
+        value: 1,
+      },
+      {
+        label: "Loše",
+        value: 2,
+      },
+      {
+        label: "Dobro",
+        value: 3,
+      },
+      {
+        label: "Vrlo dobro",
+        value: 4,
+      },
+      {
+        label: "Super",
+        value: 5,
+      },
+    ],
     description: "",
     isEnteredForToday: false,
-    latestMood: "",
+    latestMood: 0,
     entryClicked: false,
   }),
   methods: {
@@ -90,26 +116,29 @@ export default {
       this.entryClicked = true;
     },
     saveEntry() {
-      MoodService.NewMood(this.user._id, this.model, this.description).then(
-        (res) => {
-          this.$q.notify({
-            color: "green-4",
-            textColor: "white",
-            icon: "cloud_done",
-            message: "Usprešno spremljeno raspoloženje (za danas 😉)",
-          });
-          this.checkIfAlreadyEntered();
-        }
-      );
+      MoodService.NewMood(
+        this.user._id,
+        this.model.value,
+        this.description
+      ).then((res) => {
+        this.$q.notify({
+          color: "green-4",
+          textColor: "white",
+          icon: "cloud_done",
+          message: "Usprešno spremljeno raspoloženje (za danas 😉)",
+        });
+        this.checkIfAlreadyEntered();
+        this.$forceUpdate();
+      });
     },
     checkIfAlreadyEntered() {
       MoodService.GetAllMoods(this.user._id).then((res) => {
+        console.log(res);
         const lastDate = res[res.length - 1].date;
         const latestMood = res[res.length - 1].mood;
-
         if (moment().diff(moment(lastDate), "hours") < 24) {
           this.isEnteredForToday = true;
-          this.latestMood = latestMood;
+          this.latestMood = parseInt(latestMood);
         }
       });
     },

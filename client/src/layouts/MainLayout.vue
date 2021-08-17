@@ -9,10 +9,10 @@
           Freud
         </q-toolbar-title>
         <q-space />
-        <q-btn flat to="/blog">Blog</q-btn>
-        <q-btn flat to="/member-area">Dio za članove</q-btn>
-        <q-btn flat to="/resources">Resursi</q-btn>
-        <q-btn flat to="/about">O projektu</q-btn>
+        <q-btn flat to="/blog/">Blog</q-btn>
+        <q-btn flat to="/member-area/">Dio za članove</q-btn>
+        <!-- <q-btn flat to="/resources">Resursi</q-btn>
+        <q-btn flat to="/about">O projektu</q-btn> -->
       </q-toolbar>
     </q-header>
     <q-page-container>

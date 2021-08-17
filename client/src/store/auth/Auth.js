@@ -3,11 +3,13 @@ import axios from "axios";
 const state = {
     token: localStorage.getItem('token') || '',
     user: {},
+    role: '',
     status: ''
 };
 
 const getters = {
     isLoggedIn: state => !!state.token,
+    isAdmin: state => state.role == 'Admin' ? true : false,
     authState: state => state.status,
     user: state => state.user
 };
@@ -21,9 +23,12 @@ const actions = {
         if(res.data.success) {
             const token = res.data.token;
             const user = res.data.user;
+            const role = res.data.user.role;
+            
             localStorage.setItem('token', token);
+
             axios.defaults.headers.common['Authorization'] = token;
-            commit('auth_success', token, user);
+            commit('auth_success', token, user, role);
         }
         return res;
     },
@@ -56,9 +61,10 @@ const mutations = {
     auth_request(state) {
         state.status = 'loading'
     },
-    auth_success(state, token, user) {
+    auth_success(state, token, user, role) {
         state.token = token;
         state.user = user;
+        state.role = role;
         state.status = 'success';
     },
     register_request(state) {
@@ -71,6 +77,7 @@ const mutations = {
         state.status = '';
         state.token = '';
         state.user = '';
+        state.role = '';
     },
     profile_request(state) {
         state.status = 'loading' 

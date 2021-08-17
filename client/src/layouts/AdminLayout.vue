@@ -8,13 +8,6 @@
         <q-btn v-if="isAuthenticated" :label="$t('logout')" @click="logoutUser"></q-btn>
       </q-toolbar>
 
-      <q-tabs align="center" class="desktop">
-        <q-route-tab to="overview" label="Pregled" />
-        <q-route-tab to="diary" label="Dnevnik" />
-        <q-route-tab to="goals" label="Ciljevi" />
-        <q-route-tab to="mood" label="Raspoloženje" />
-        <q-route-tab to="profile" label="Profil" />
-      </q-tabs>
     </q-header>
     <q-page-container>
       <router-view />
@@ -44,6 +37,6 @@ export default {
     created() {
         this.isAuthenticated = this.isLoggedIn;
     }
-    
 }
+    
 </script>
