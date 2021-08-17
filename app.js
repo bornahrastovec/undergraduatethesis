@@ -1,3 +1,5 @@
+// Paketi o kojima je ovisan cijeli backend
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -5,6 +7,10 @@ const path = require("path");
 const cors = require("cors");
 const passport = require('passport');
 
+
+// Rute za API 
+
+const admin = require('./routes/api/admin');
 const users = require('./routes/api/users');
 const diary = require('./routes/api/diary');
 const goal = require('./routes/api/goal');
@@ -16,12 +22,12 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Form Data Middleware
-app.use(bodyParser.urlencoded({
-    extended: false
+app.use(express.urlencoded({
+    extended: true
 }))
 
 //JSON Body Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 //Cors Middleware
 app.use(cors());
@@ -33,6 +39,7 @@ app.use('/api/users', users);
 app.use('/api/diary', diary);
 app.use('/api/goals', goal);
 app.use('/api/mood', mood);
+app.use('/api/admin', admin);
 
 require("./scheduler");
 

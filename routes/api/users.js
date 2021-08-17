@@ -13,7 +13,7 @@ const User = require('../../models/User');
  */
 
 router.post('/register', (req, res) => {
-    let {name, surname, username, password, passwordRepeat, email, date } = req.body
+    let {name, surname, username, password, passwordRepeat, email, role, gender } = req.body
 
     if(password !== passwordRepeat) {
         return res.status(400).json({
@@ -41,7 +41,9 @@ router.post('/register', (req, res) => {
         surname,
         username,
         password,
-        email
+        gender,
+        email,
+        role
     });
 
     bcrypt.genSalt(10, (err, salt) => {

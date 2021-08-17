@@ -25,6 +25,17 @@ const UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    role: {
+        type: String,
+        default: 'Regular'
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    profilePicture: {
+        type: String
     }
 })
 
