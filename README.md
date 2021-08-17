@@ -1,5 +1,7 @@
 # Freud 
 
+![image](https://user-images.githubusercontent.com/49564723/129753793-49b6930d-9845-40a5-b836-20d3e975f24f.png)
+
 This is my undergraduate thesis project at the Polytechnic of Međimurje in Čakovec.
 The project is not that advanced, because I chose technologies that we didn't use during our 
 time in college, and I'm not that good at developing apps from scratch (even though it's better
