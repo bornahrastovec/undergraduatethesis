@@ -1,14 +1,14 @@
 <template>
-  <q-page class="main">
+  <q-page class="main bg-teal-7">
     <div class="hero">
       <div class="hero-content">
-        <h1>Freud</h1>
+        <div class="text-h1 text-white">Freud</div>
         <q-btn unelevated rounded color="primary" @click="scrollToElement"
           >Saznaj više</q-btn
         >
       </div>
     </div>
-    <div class="column q-pa-md bg-teal" style="color:white;" id="desc">
+    <div class="column q-pa-md bg-teal-8" style="color:white;" id="desc">
       <div class="title">
         <div class="text-h2 text-center q-pa-md">Što je "Freud"?</div>
       </div>

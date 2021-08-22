@@ -27,19 +27,19 @@
                   />
                 </div>
                 <div class="text-h6 text-black text-bold q-pa-md">
-                  Kako:
+                  🧐 Kako:
                   <div class="text-h6 text-black q-pa-md">
                     {{ goal.how }}
                   </div>
                 </div>
                 <div class="text-h6 text-black text-bold q-pa-md">
-                  Zašto:
+                  🤔 Zašto:
                   <div class="text-h6 text-black q-pa-md">
                     {{ goal.why }}
                   </div>
                 </div>
                 <div class="text-h6 text-black text-bold q-pa-md">
-                  Do kada?
+                  📅 Do kada?
                   <div class="text-h6 text-black q-pa-md">
                     {{ filterDate(goal.dateOfPlannedAchievment) }}
                   </div>
@@ -80,7 +80,7 @@ export default {
       return null;
     },
     markAsChecked(id) {
-    GoalService.MarkGoalAsChecked(id).then((res) => {
+      GoalService.MarkGoalAsChecked(id).then((res) => {
         console.log(res);
         GoalService.GetGoals(this.user._id).then((res) => {
           this.goals = res;

@@ -1,6 +1,9 @@
 <template>
   <q-page>
     <div class="q-pa-md">
+      <div v-if="diaryEntries == null || diaryEntries.length == 0">
+        <div class="text-h2 text-bold q-pa-md">Nema nikakvih unosa u dnevnik, unesi nešto  🙂 </div>
+      </div>
       <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
         <div
           v-for="(entry, index) in diaryEntries"

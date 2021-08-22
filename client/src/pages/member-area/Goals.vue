@@ -7,7 +7,7 @@
         ref="stepper"
         color="primary"
         animated
-        style="height: 100%; width: 50vw"
+        style="height: 100%"
       >
         <q-step
           :name="1"
@@ -78,14 +78,14 @@
             <q-btn
               @click="nextStep()"
               color="primary"
-              :label="step === 5 ? 'Finish' : 'Continue'"
+              :label="step === 6 ? 'Završi' : 'Dalje'"
             />
             <q-btn
               v-if="step > 1"
               flat
               color="primary"
               @click="$refs.stepper.previous()"
-              label="Back"
+              label="Nazad"
               class="q-ml-sm"
             />
           </q-stepper-navigation>
@@ -114,10 +114,10 @@ export default {
   methods: {
     ...mapActions("Auth", ["getProfile"]),
     nextStep() {
-      if (this.step < 5) {
+      if (this.step < 6) {
         this.step += 1;
       }
-      if (this.step == 5) {
+      if (this.step == 6) {
         this.addGoal();
         this.step = 1;
       }
@@ -157,5 +157,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.q-stepper {
+  width: 50vw;
+}
+@media (max-width: $breakpoint-sm) {
+ .q-stepper {
+   width: 100%;
+ }
+
+}
 </style>

@@ -4,7 +4,7 @@
       <q-img :src="imgUrl">
         <div class="absolute-full text-subtitle2 flex flex-center">{{title}}</div>
       </q-img>
-      <span v-html="text"></span>
+      <span v-html="text" class="text-body2"></span>
     </div>
   </q-page>
 </template>

@@ -10,18 +10,18 @@
               bg-teal
               window-height
               justify-center
-              align-center
+              items-center
               left-pane
             "
           >
-            <div class="text-h1 text-white text-bold">Registracija</div>
+            <div class="text-h2 text-white text-bold">Registracija</div>
           </div>
           <div
             class="
               col-lg-6 col-sm-12 col-xs-12
               flex
               justify-center
-              align-center
+              items-center
             "
           >
             <div class="row q-pa-md full-width">
@@ -209,11 +209,12 @@ export default {
 <style lang="scss" scoped>
 .q-card {
   max-width: 100%;
-  width: 25vw;
+  width: 50vw;
 }
 @media (max-width: $breakpoint-sm) {
   .q-card {
     max-width: 100%;
+    width: 100%;
   }
   .form-container {
     max-width: 100vw;

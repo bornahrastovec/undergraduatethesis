@@ -10,7 +10,7 @@
               bg-teal
               justify-center
               window-height
-              align-center
+              items-center
             "
           >
             <div class="text-h1 q-pa-md text-white text-bold">Prijava</div>
@@ -21,7 +21,7 @@
               text-center
               flex
               justify-center
-              align-center
+              items-center
             "
           >
             <div class="row q-pa-md full-width">
@@ -144,6 +144,7 @@ export default {
 @media (max-width: $breakpoint-sm) {
   .q-card {
     max-width: 100%;
+    width: 100%;
   }
   .form-container {
     max-width: 100vw;
