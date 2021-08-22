@@ -1,26 +1,14 @@
 # Freud (client)
 
-Undergraduate Thesis
+Undergraduate Thesis project
 
-## Install the dependencies
+## Install the dependencies in both root folder and this folder
 ```bash
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Start the app using concurrently (starts both server and client with quasar dev)
 ```bash
-quasar dev
+npm start
 ```
-
-### Lint the files
-```bash
-npm run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).
+![alt text](https://www.vhv.rs/dpng/d/312-3121044_sigmund-freud-coloring-page-line-art-hd-png.png)
